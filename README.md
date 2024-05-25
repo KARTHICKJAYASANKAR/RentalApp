@@ -68,3 +68,58 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 ### `npm run build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+
+
+
+
+
+
+
+
+
+## context API notes
+
+    - Create a Context: First, you need to create a context where you'll store the buyer's ID.
+
+    - Provide the Context Value: Wrap your component tree with a provider component where you provide the value of the context.
+
+    - Consume the Context Value: Use the useContext hook in any component where you need access to the buyer's ID.
+-----------------------------------------------------------------------------------
+// 1. Create a context
+import React, { createContext, useContext, useState } from 'react';
+
+// Create the context
+const BuyerIdContext = createContext();
+
+// 2. Provide the context value
+const App = () => {
+  const [buyerId, setBuyerId] = useState(null); // State to store the buyer's ID
+
+  return (
+    <BuyerIdContext.Provider value={{ buyerId, setBuyerId }}>
+      <YourAppComponents />
+    </BuyerIdContext.Provider>
+  );
+};
+
+// 3. Consume the context value
+const SomeComponent = () => {
+  const { buyerId } = useContext(BuyerIdContext); // Access buyerId from the context
+
+  return (
+    <div>
+      Buyer ID: {buyerId}
+    </div>
+  );
+};
+----------------------------------------------------------------------------------------------------
+
+
+   - lastly done 
+   - navbar component done => implement in all components
+   - sign up page la yum useContext implement pannanu
+   
+
+   ++ TO do ++
+   * cart add
+   * in cart group the products with the specific seller
